@@ -9,7 +9,7 @@ abstract_target "TestPods" do
     end
 
     target 'Cartography-Mac-Tests' do
-      platform :osx, '10.10'
+      platform :osx, '10.13'
     end
 
     target 'Cartography-tvOS-tests' do
