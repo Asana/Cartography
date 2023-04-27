@@ -5,7 +5,7 @@ abstract_target "TestPods" do
     pod 'Quick', :git => 'https://github.com/Quick/Quick.git'
 
     target 'Cartography-iOS-Tests' do
-      platform :ios, '8.0'
+      platform :ios, '11.0'
     end
 
     target 'Cartography-Mac-Tests' do
