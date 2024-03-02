@@ -91,6 +91,33 @@ public protocol RelativeCompoundInequality : Compound { }
 ///
 /// - returns: An `NSLayoutConstraint`.
 ///
+
 @discardableResult public func >= <P: RelativeCompoundInequality>(lhs: P, rhs: Expression<P>) -> [NSLayoutConstraint] {
+    return lhs.context.addConstraint(lhs, coefficients: rhs.coefficients, to: rhs.value, relation: .greaterThanOrEqual)
+}
+
+// MARK: Asana speedup
+
+@discardableResult public func ~== <P: RelativeCompoundEquality>(lhs: P, rhs: Expression<P>) -> [NSLayoutConstraint] {
+    return lhs.context.addConstraint(lhs, coefficients: rhs.coefficients, to: rhs.value)
+}
+
+@discardableResult public func ~== <P: RelativeCompoundEquality>(lhs: P, rhs: P) -> [NSLayoutConstraint] {
+    return lhs.context.addConstraint(lhs, to: rhs)
+}
+
+@discardableResult public func ~<= <P: RelativeCompoundInequality>(lhs: P, rhs: P) -> [NSLayoutConstraint] {
+    return lhs.context.addConstraint(lhs, to: rhs, relation: .lessThanOrEqual)
+}
+
+@discardableResult public func ~>= <P: RelativeCompoundInequality>(lhs: P, rhs: P) -> [NSLayoutConstraint] {
+    return lhs.context.addConstraint(lhs, to: rhs, relation: .greaterThanOrEqual)
+}
+
+@discardableResult public func ~<= <P: RelativeCompoundInequality>(lhs: P, rhs: Expression<P>) -> [NSLayoutConstraint] {
+    return lhs.context.addConstraint(lhs, coefficients: rhs.coefficients, to: rhs.value, relation: .lessThanOrEqual)
+}
+
+@discardableResult public func ~>= <P: RelativeCompoundInequality>(lhs: P, rhs: Expression<P>) -> [NSLayoutConstraint] {
     return lhs.context.addConstraint(lhs, coefficients: rhs.coefficients, to: rhs.value, relation: .greaterThanOrEqual)
 }
